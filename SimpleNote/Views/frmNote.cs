@@ -30,6 +30,7 @@ namespace SimpleNote.Views
                 this.btnDelete.Text = "Delete Forever";
                 this.btnInfo.Text = "Restore Note";
                 this.btnNew.Enabled = false;
+                //shdbfhsdfbhsfb
             }
             else
             {
