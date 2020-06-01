@@ -35,21 +35,21 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnNew = new System.Windows.Forms.Button();
-            this.tbFind = new System.Windows.Forms.TextBox();
+            this.tbSearchNote = new System.Windows.Forms.TextBox();
             this.btnInfo = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.cID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cNote = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.rtbDescreption = new System.Windows.Forms.RichTextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.cID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -87,14 +87,16 @@
             // newNoteToolStripMenuItem
             // 
             this.newNoteToolStripMenuItem.Name = "newNoteToolStripMenuItem";
-            this.newNoteToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.newNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newNoteToolStripMenuItem.Text = "New Note";
+            this.newNoteToolStripMenuItem.Click += new System.EventHandler(this.newNoteToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -106,8 +108,9 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Info;
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.btnNew);
-            this.splitContainer1.Panel1.Controls.Add(this.tbFind);
+            this.splitContainer1.Panel1.Controls.Add(this.tbSearchNote);
             this.splitContainer1.Panel1.Controls.Add(this.btnInfo);
             this.splitContainer1.Panel1.Controls.Add(this.btnDelete);
             this.splitContainer1.Panel1.Controls.Add(this.btnSave);
@@ -117,13 +120,13 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(800, 443);
-            this.splitContainer1.SplitterDistance = 55;
+            this.splitContainer1.SplitterDistance = 80;
             this.splitContainer1.TabIndex = 7;
             // 
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNew.Location = new System.Drawing.Point(227, 9);
+            this.btnNew.Location = new System.Drawing.Point(227, 32);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(70, 25);
             this.btnNew.TabIndex = 5;
@@ -131,20 +134,21 @@
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // tbFind
+            // tbSearchNote
             // 
-            this.tbFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFind.Location = new System.Drawing.Point(81, 10);
-            this.tbFind.Name = "tbFind";
-            this.tbFind.Size = new System.Drawing.Size(140, 22);
-            this.tbFind.TabIndex = 4;
+            this.tbSearchNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbSearchNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearchNote.Location = new System.Drawing.Point(81, 35);
+            this.tbSearchNote.Name = "tbSearchNote";
+            this.tbSearchNote.Size = new System.Drawing.Size(140, 22);
+            this.tbSearchNote.TabIndex = 4;
+            this.tbSearchNote.TextChanged += new System.EventHandler(this.tbSearchNote_TextChanged);
             // 
             // btnInfo
             // 
             this.btnInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfo.Enabled = false;
-            this.btnInfo.Location = new System.Drawing.Point(688, 9);
+            this.btnInfo.Location = new System.Drawing.Point(688, 34);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(100, 25);
             this.btnInfo.TabIndex = 3;
@@ -156,7 +160,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(582, 9);
+            this.btnDelete.Location = new System.Drawing.Point(582, 34);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 25);
             this.btnDelete.TabIndex = 2;
@@ -168,7 +172,7 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(501, 9);
+            this.btnSave.Location = new System.Drawing.Point(501, 34);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.TabIndex = 1;
@@ -178,10 +182,9 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSelect.Location = new System.Drawing.Point(10, 9);
+            this.btnSelect.Location = new System.Drawing.Point(81, 3);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(65, 25);
+            this.btnSelect.Size = new System.Drawing.Size(105, 25);
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "All Note";
             this.btnSelect.UseVisualStyleBackColor = true;
@@ -200,7 +203,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 384);
+            this.splitContainer2.Size = new System.Drawing.Size(800, 359);
             this.splitContainer2.SplitterDistance = 294;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -215,11 +218,16 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(294, 384);
+            this.listView1.Size = new System.Drawing.Size(294, 359);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.Click += new System.EventHandler(this.listView1_Click);
+            // 
+            // cID
+            // 
+            this.cID.Text = "ID";
+            this.cID.Width = 30;
             // 
             // cNote
             // 
@@ -240,8 +248,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.rtbDescreption);
-            this.splitContainer3.Size = new System.Drawing.Size(502, 384);
-            this.splitContainer3.SplitterDistance = 27;
+            this.splitContainer3.Size = new System.Drawing.Size(502, 359);
+            this.splitContainer3.SplitterDistance = 25;
             this.splitContainer3.TabIndex = 0;
             // 
             // tbTitle
@@ -251,7 +259,7 @@
             this.tbTitle.Location = new System.Drawing.Point(0, 0);
             this.tbTitle.Multiline = true;
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(502, 27);
+            this.tbTitle.Size = new System.Drawing.Size(502, 25);
             this.tbTitle.TabIndex = 0;
             this.toolTip1.SetToolTip(this.tbTitle, "Title");
             // 
@@ -261,20 +269,22 @@
             this.rtbDescreption.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbDescreption.Location = new System.Drawing.Point(0, 0);
             this.rtbDescreption.Name = "rtbDescreption";
-            this.rtbDescreption.Size = new System.Drawing.Size(502, 353);
+            this.rtbDescreption.Size = new System.Drawing.Size(502, 330);
             this.rtbDescreption.TabIndex = 0;
             this.rtbDescreption.Text = "";
             this.toolTip2.SetToolTip(this.rtbDescreption, "Descreption");
             // 
-            // timer1
+            // label1
             // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // cID
-            // 
-            this.cID.Text = "ID";
-            this.cID.Width = 30;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 22);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Search";
             // 
             // frmNote
             // 
@@ -322,15 +332,15 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.TextBox tbFind;
+        private System.Windows.Forms.TextBox tbSearchNote;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader cNote;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.RichTextBox rtbDescreption;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.ColumnHeader cID;
+        private System.Windows.Forms.Label label1;
     }
 }

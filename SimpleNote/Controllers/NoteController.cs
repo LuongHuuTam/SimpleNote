@@ -92,5 +92,25 @@ namespace SimpleNote.Controllers
                 return false;
             }
         }
+        public static List<Note> getListNote(string str)
+        {
+            using (var _context = new SimpleNoteEntities())
+            {
+                var node = (from n in _context.Notes.AsEnumerable()
+                            where n.Title.Contains(str)
+                            select new
+                            {
+                                id = n.ID,
+                                title = n.Title,
+                                descreption = n.Descreption
+                            }).Select(x => new Note
+                            {
+                                ID = x.id,
+                                Descreption = x.descreption,
+                                Title = x.title
+                            }).ToList();
+                return node;
+            }
+        }
     }
 }
