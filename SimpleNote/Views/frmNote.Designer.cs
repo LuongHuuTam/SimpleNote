@@ -42,13 +42,14 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cNote = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.rtbDescreption = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.cID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -128,6 +129,7 @@
             this.btnNew.TabIndex = 5;
             this.btnNew.Text = "New Node";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // tbFind
             // 
@@ -148,6 +150,7 @@
             this.btnInfo.TabIndex = 3;
             this.btnInfo.Text = "Info";
             this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnDelete
             // 
@@ -159,6 +162,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -170,6 +174,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnSelect
             // 
@@ -202,7 +207,8 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.cID,
+            this.cNote});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.GridLines = true;
@@ -213,11 +219,12 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
-            // columnHeader1
+            // cNote
             // 
-            this.columnHeader1.Text = "All Note";
-            this.columnHeader1.Width = 496;
+            this.cNote.Text = "Note";
+            this.cNote.Width = 466;
             // 
             // splitContainer3
             // 
@@ -263,6 +270,11 @@
             // 
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // cID
+            // 
+            this.cID.Text = "ID";
+            this.cID.Width = 30;
             // 
             // frmNote
             // 
@@ -312,12 +324,13 @@
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.TextBox tbFind;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader cNote;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.RichTextBox rtbDescreption;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.ColumnHeader cID;
     }
 }

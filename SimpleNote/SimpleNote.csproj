@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Controllers\TrashConntroller.cs" />
     <Compile Include="Models\Note.cs">
       <DependentUpon>SimpleNoteModel.tt</DependentUpon>
     </Compile>
@@ -117,9 +119,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\SimpleNoteModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
