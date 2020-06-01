@@ -17,15 +17,13 @@ namespace SimpleNote.Views
         {
             InitializeComponent();
         }
-
         private void frmNote_Load(object sender, EventArgs e)
         {
-
+            //timer1.Enabled = true;
         }
-
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (btnSelect.Text=="All Note")
+            if (btnSelect.Text == "All Note")
             {
                 this.btnSelect.Text = Text = "Trash";
                 this.btnSave.Visible = false;
@@ -41,6 +39,10 @@ namespace SimpleNote.Views
                 this.btnInfo.Text = "Info";
                 this.btnNew.Enabled = true;
             }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }
