@@ -34,6 +34,7 @@ namespace SimpleNote.Controllers
             {
                 using (var _context = new SimpleNoteEntities())
                 {
+                    
                     _context.Notes.AddOrUpdate(note);
                     _context.SaveChanges();
                     return true;

@@ -132,6 +132,12 @@ namespace SimpleNote.Views
                 Note note = NoteController.getNote(int.Parse(listView1.SelectedItems[0].Text));
                 Trash trash = new Trash() { TrashTitle = note.Title, TrashDecreption = note.Descreption };
                 NoteController.deleteNote(int.Parse(listView1.SelectedItems[0].Text));
+                if (note.Title == "New note")
+                {
+                    loadNote();
+                    btnDelete.Enabled = btnInfo.Enabled = btnSave.Enabled = false;
+                    return;
+                }
                 TrashConntroller.addTrash(trash);
                 loadNote();
                 reset();
