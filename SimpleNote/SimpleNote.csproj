@@ -119,21 +119,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Models\SimpleNoteModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SimpleNoteModel.Context.cs</LastGenOutput>
       <DependentUpon>SimpleNoteModel.edmx</DependentUpon>
+      <LastGenOutput>SimpleNoteModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\SimpleNoteModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SimpleNoteModel.edmx</DependentUpon>
       <LastGenOutput>SimpleNoteModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

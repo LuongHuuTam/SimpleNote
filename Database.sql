@@ -1,0 +1,19 @@
+CREATE DATABASE SimpleNote
+GO
+USE SimpleNote
+GO
+CREATE TABLE dbo.Note
+(
+NoteID INT PRIMARY KEY,
+NoteTitle NVARCHAR(200) NULL,
+NoteDescription NVARCHAR(2000) NULL,
+NoteModified DATETIME 
+)
+GO	
+CREATE TABLE dbo.Trash
+(
+TrashID INT PRIMARY KEY,
+TrashTitle NVARCHAR(200) NULL,
+TrashDescription NVARCHAR(2000) NULL
+)
+GO	

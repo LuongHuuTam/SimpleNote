@@ -34,6 +34,7 @@
             this.newNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
             this.tbSearchNote = new System.Windows.Forms.TextBox();
             this.btnInfo = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.rtbDescreption = new System.Windows.Forms.RichTextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -87,14 +87,14 @@
             // newNoteToolStripMenuItem
             // 
             this.newNoteToolStripMenuItem.Name = "newNoteToolStripMenuItem";
-            this.newNoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newNoteToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.newNoteToolStripMenuItem.Text = "New Note";
             this.newNoteToolStripMenuItem.Click += new System.EventHandler(this.newNoteToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -123,6 +123,18 @@
             this.splitContainer1.SplitterDistance = 80;
             this.splitContainer1.TabIndex = 7;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 22);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Search";
+            // 
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -130,7 +142,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(70, 25);
             this.btnNew.TabIndex = 5;
-            this.btnNew.Text = "New Node";
+            this.btnNew.Text = "New Note";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -255,7 +267,7 @@
             // tbTitle
             // 
             this.tbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTitle.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTitle.Location = new System.Drawing.Point(0, 0);
             this.tbTitle.Multiline = true;
             this.tbTitle.Name = "tbTitle";
@@ -272,19 +284,7 @@
             this.rtbDescreption.Size = new System.Drawing.Size(502, 330);
             this.rtbDescreption.TabIndex = 0;
             this.rtbDescreption.Text = "";
-            this.toolTip2.SetToolTip(this.rtbDescreption, "Descreption");
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 22);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Search";
+            this.toolTip2.SetToolTip(this.rtbDescreption, "Description");
             // 
             // frmNote
             // 
@@ -329,18 +329,18 @@
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnInfo;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.TextBox tbSearchNote;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader cNote;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.RichTextBox rtbDescreption;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.ColumnHeader cID;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbTitle;
+        private System.Windows.Forms.Button btnSave;
     }
 }

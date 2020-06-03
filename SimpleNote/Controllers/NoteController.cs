@@ -16,8 +16,8 @@ namespace SimpleNote.Controllers
             using (var _context=new SimpleNoteEntities())
             {
                 var id = (from n in _context.Notes
-                          select n.ID).ToList();
-                if (id.Count <= 0)
+                          select n.NoteID).ToList();
+                if (id.Count <= 0 || id[0] != 1)
                     return 1;
                 int i;
                 for (i = 0; i < id.Count - 1; i++)
@@ -52,14 +52,16 @@ namespace SimpleNote.Controllers
                 var node = (from n in _context.Notes.AsEnumerable()
                             select new
                             {
-                                id = n.ID,
-                                title = n.Title,
-                                descreption = n.Descreption
+                                id = n.NoteID,
+                                title = n.NoteTitle,
+                                description = n.NoteDescription,
+                                modified=n.NoteModified
                             }).Select(x => new Note
                             {
-                                ID = x.id,
-                                Descreption = x.descreption,
-                                Title = x.title
+                                NoteID = x.id,
+                                NoteDescription = x.description,
+                                NoteTitle = x.title,
+                                NoteModified=x.modified
                             }).ToList();
                 return node;
             }
@@ -69,7 +71,7 @@ namespace SimpleNote.Controllers
             using (var _context=new SimpleNoteEntities())
             {
                 var note = (from n in _context.Notes
-                            where n.ID == id
+                            where n.NoteID == id
                             select n).SingleOrDefault();
                 return note;
             }
@@ -81,7 +83,7 @@ namespace SimpleNote.Controllers
                 using (var _context = new SimpleNoteEntities())
                 {
                     var note = (from n in _context.Notes
-                                where n.ID == id
+                                where n.NoteID == id
                                 select n).Single();
                     _context.Notes.Remove(note);
                     _context.SaveChanges();
@@ -98,17 +100,19 @@ namespace SimpleNote.Controllers
             using (var _context = new SimpleNoteEntities())
             {
                 var node = (from n in _context.Notes.AsEnumerable()
-                            where n.Title.Contains(str)
+                            where n.NoteTitle.Contains(str)
                             select new
                             {
-                                id = n.ID,
-                                title = n.Title,
-                                descreption = n.Descreption
+                                id = n.NoteID,
+                                title = n.NoteTitle,
+                                description = n.NoteDescription,
+                                modified = n.NoteModified
                             }).Select(x => new Note
                             {
-                                ID = x.id,
-                                Descreption = x.descreption,
-                                Title = x.title
+                                NoteID = x.id,
+                                NoteDescription = x.description,
+                                NoteTitle = x.title,
+                                NoteModified = x.modified
                             }).ToList();
                 return node;
             }

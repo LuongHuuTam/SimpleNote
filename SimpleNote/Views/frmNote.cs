@@ -16,6 +16,7 @@ namespace SimpleNote.Views
     public partial class frmNote : Form
     {
         private bool flag;
+        private int i;
         public frmNote()
         {
             InitializeComponent();
@@ -33,8 +34,8 @@ namespace SimpleNote.Views
                 List<Note> listNode = NoteController.getListNote();
                 foreach (Note note in listNode)
                 {
-                    string text = note.Title;
-                    ListViewItem n = new ListViewItem(note.ID.ToString());
+                    string text = note.NoteTitle;
+                    ListViewItem n = new ListViewItem(note.NoteID.ToString());
                     n.SubItems.Add(text);
                     this.listView1.Items.Add(n);
                 }
@@ -46,7 +47,7 @@ namespace SimpleNote.Views
                 foreach (Trash trash in listTrash)
                 {
                     string text = trash.TrashTitle;
-                    ListViewItem n = new ListViewItem("T");
+                    ListViewItem n = new ListViewItem(trash.TrashID.ToString());
                     n.SubItems.Add(text);
                     this.listView1.Items.Add(n);
                 }
@@ -82,9 +83,10 @@ namespace SimpleNote.Views
         private void btnNew_Click(object sender, EventArgs e)
         {
             Note note = new Note();
-            note.ID = NoteController.getID();
-            note.Title = "New note";
-            note.Descreption = "";
+            note.NoteID = NoteController.getID();
+            note.NoteTitle = "New note";
+            note.NoteDescription = "";
+            note.NoteModified = DateTime.Now;
             if (NoteController.addNote(note) == false)
                 MessageBox.Show("kkk");
             loadNote();
@@ -95,9 +97,10 @@ namespace SimpleNote.Views
             if (flag)
             {
                 Note note = new Note();
-                note.ID = int.Parse(listView1.SelectedItems[0].Text);
-                note.Title = tbTitle.Text;
-                note.Descreption = rtbDescreption.Text;
+                note.NoteID = int.Parse(listView1.SelectedItems[0].Text);
+                note.NoteTitle = tbTitle.Text;
+                note.NoteDescription = rtbDescreption.Text;
+                note.NoteModified = DateTime.Now;
                 if (NoteController.addNote(note) == false)
                     MessageBox.Show("kkk");
                 loadNote();
@@ -112,17 +115,18 @@ namespace SimpleNote.Views
         private void listView1_Click(object sender, EventArgs e)
         {
             btnDelete.Enabled = btnInfo.Enabled = btnSave.Enabled = true;
+            i = int.Parse(listView1.SelectedItems[0].Text);
             if (flag)
             {
                 Note note = NoteController.getNote(int.Parse(listView1.SelectedItems[0].Text));
-                tbTitle.Text = note.Title;
-                rtbDescreption.Text = note.Descreption;
+                tbTitle.Text = note.NoteTitle;
+                rtbDescreption.Text = note.NoteDescription;
             }
             else
             {
-                Trash trash = TrashConntroller.GetTrash(listView1.SelectedItems[0].SubItems[1].Text);
+                Trash trash = TrashConntroller.GetTrash(int.Parse(listView1.SelectedItems[0].SubItems[0].Text));
                 tbTitle.Text = trash.TrashTitle;
-                rtbDescreption.Text = trash.TrashDecreption;
+                rtbDescreption.Text = trash.TrashDescription;
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -130,14 +134,8 @@ namespace SimpleNote.Views
             if (flag)
             {
                 Note note = NoteController.getNote(int.Parse(listView1.SelectedItems[0].Text));
-                Trash trash = new Trash() { TrashTitle = note.Title, TrashDecreption = note.Descreption };
+                Trash trash = new Trash() {TrashID=TrashConntroller.getID(), TrashTitle = note.NoteTitle, TrashDescription = note.NoteDescription };
                 NoteController.deleteNote(int.Parse(listView1.SelectedItems[0].Text));
-                if (note.Title == "New note")
-                {
-                    loadNote();
-                    btnDelete.Enabled = btnInfo.Enabled = btnSave.Enabled = false;
-                    return;
-                }
                 TrashConntroller.addTrash(trash);
                 loadNote();
                 reset();
@@ -145,7 +143,7 @@ namespace SimpleNote.Views
             }
             else
             {
-                TrashConntroller.deleteTrash(listView1.SelectedItems[0].SubItems[1].Text);
+                TrashConntroller.deleteTrash(int.Parse(listView1.SelectedItems[0].SubItems[0].Text));
                 loadNote();
                 reset();
                 btnDelete.Enabled = btnInfo.Enabled = btnSave.Enabled = false;
@@ -156,20 +154,21 @@ namespace SimpleNote.Views
             if (flag)
             {
                 Note note = NoteController.getNote(int.Parse(listView1.SelectedItems[0].Text));
-                string[] arr = note.Descreption.Split(' ');
-                string[] arr1 = note.Descreption.Split('\n');
+                string[] arr = note.NoteDescription.Split(' ');
+                string[] arr1 = note.NoteDescription.Split('\n');
                 int a = arr.Count() + arr1.Count() - 1;
-                MessageBox.Show(note.Descreption.Length + "character\n" + a + "words\n" + "", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(note.NoteDescription.Length + "character\n" + a + "words\n" + "Modified: " + note.NoteModified.Value.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnDelete.Enabled = btnInfo.Enabled = btnSave.Enabled = false;
             }
             else
             {
-                Trash trash = TrashConntroller.GetTrash(listView1.SelectedItems[0].SubItems[1].Text);
+                Trash trash = TrashConntroller.GetTrash(int.Parse(listView1.SelectedItems[0].Text));
                 Note note = new Note();
-                note.ID = NoteController.getID();
-                note.Title = trash.TrashTitle;
-                note.Descreption = trash.TrashDecreption;
-                TrashConntroller.deleteTrash(listView1.SelectedItems[0].SubItems[1].Text);
+                note.NoteID = NoteController.getID();
+                note.NoteTitle = trash.TrashTitle;
+                note.NoteDescription = trash.TrashDescription;
+                note.NoteModified = DateTime.Now;
+                TrashConntroller.deleteTrash(int.Parse(listView1.SelectedItems[0].Text));
                 NoteController.addNote(note);
                 loadNote();
                 reset();
@@ -185,8 +184,8 @@ namespace SimpleNote.Views
                 List<Note> listNode = NoteController.getListNote(tbSearchNote.Text);
                 foreach (Note note in listNode)
                 {
-                    string text = note.Title;
-                    ListViewItem n = new ListViewItem(note.ID.ToString());
+                    string text = note.NoteTitle;
+                    ListViewItem n = new ListViewItem(note.NoteID.ToString());
                     n.SubItems.Add(text);
                     this.listView1.Items.Add(n);
                 }
@@ -215,9 +214,9 @@ namespace SimpleNote.Views
             if (flag)
             {
                 Note note = new Note();
-                note.ID = NoteController.getID();
-                note.Title = "New note";
-                note.Descreption = "";
+                note.NoteID = NoteController.getID();
+                note.NoteTitle = "New note";
+                note.NoteDescription = "";
                 if (NoteController.addNote(note) == false)
                     MessageBox.Show("kkk");
                 loadNote();
@@ -228,5 +227,7 @@ namespace SimpleNote.Views
                 return;
             }
         }
+
+       
     }
 }

@@ -14,12 +14,9 @@ namespace SimpleNote.Models
     
     public partial class Note
     {
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string Descreption { get; set; }
-        public override string ToString()
-        {
-            return Title;
-        }
+        public int NoteID { get; set; }
+        public string NoteTitle { get; set; }
+        public string NoteDescription { get; set; }
+        public Nullable<System.DateTime> NoteModified { get; set; }
     }
 }

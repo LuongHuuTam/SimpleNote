@@ -9,6 +9,23 @@ namespace SimpleNote.Controllers
 {
     public class TrashConntroller
     {
+        public static int getID()
+        {
+            using (var _context = new SimpleNoteEntities())
+            {
+                var id = (from n in _context.Trashes
+                          select n.TrashID).ToList();
+                if (id.Count <= 0 || id[0] != 1)
+                    return 1;
+                int i;
+                for (i = 0; i < id.Count - 1; i++)
+                {
+                    if (id[i + 1] - id[i] != 1)
+                        break;
+                }
+                return id[i] + 1;
+            }
+        }
         public static List<Trash> getListTrash()
         {
             using (var _context = new SimpleNoteEntities())
@@ -16,11 +33,13 @@ namespace SimpleNote.Controllers
                 var t = (from n in _context.Trashes.AsEnumerable()
                          select new
                          {
+                             id=n.TrashID,
                              title = n.TrashTitle,
-                             descreption = n.TrashDecreption
+                             descreption = n.TrashDescription
                          }).Select(x => new Trash
                          {
-                             TrashDecreption = x.descreption,
+                             TrashID=x.id,
+                             TrashDescription = x.descreption,
                              TrashTitle = x.title
                          }).ToList();
                 return t;
@@ -35,10 +54,10 @@ namespace SimpleNote.Controllers
                          select new
                          {
                              title = n.TrashTitle,
-                             descreption = n.TrashDecreption
+                             descreption = n.TrashDescription
                          }).Select(x => new Trash
                          {
-                             TrashDecreption = x.descreption,
+                             TrashDescription = x.descreption,
                              TrashTitle = x.title
                          }).ToList();
                 return t;
@@ -52,22 +71,22 @@ namespace SimpleNote.Controllers
                 _context.SaveChanges();
             }
         }
-        public static Trash GetTrash(string str)
+        public static Trash GetTrash(int id)
         {
             using (var _context = new SimpleNoteEntities())
             {
                 var t = (from tr in _context.Trashes
-                         where tr.TrashTitle == str
+                         where tr.TrashID == id
                          select tr).SingleOrDefault();
                 return t;
             }
         }
-        public static void deleteTrash(string str)
+        public static void deleteTrash(int id)
         {
             using (var _context = new SimpleNoteEntities())
             {
                 var tr = (from t in _context.Trashes
-                          where t.TrashTitle == str
+                          where t.TrashID == id
                           select t).Single();
                 _context.Trashes.Remove(tr);
                 _context.SaveChanges();

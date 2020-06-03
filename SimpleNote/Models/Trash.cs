@@ -14,11 +14,8 @@ namespace SimpleNote.Models
     
     public partial class Trash
     {
+        public int TrashID { get; set; }
         public string TrashTitle { get; set; }
-        public string TrashDecreption { get; set; }
-        public override string ToString()
-        {
-            return TrashTitle;
-        }
+        public string TrashDescription { get; set; }
     }
 }
